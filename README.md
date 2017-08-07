@@ -64,7 +64,7 @@ You can always manually renew all your certificates using the following command.
 ```
 path-to-certbot-scripts/certbot-renew.sh
 ```
-So the easiest way to automate this is to just run this command on a cron job. Certbot recommends we run this twice a day.
+So the easiest way to automate this is to just run this command on a cron job. Certbot recommends we run this twice a day. Add the below to your crontab.
 ```
 0 0,12 * * * path-to-certbot-scripts/certbot-renew.sh
 ```
