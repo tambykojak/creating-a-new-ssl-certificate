@@ -57,7 +57,7 @@ HSTS basically means that your server will only allows https traffic. You can re
   add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
 ```
   
-# Overview
+# Final Server Block
 
 Your server block should look something like below at this point.
 ```
