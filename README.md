@@ -12,6 +12,7 @@ Notes:
 
 # Wakthrough
 
+
 ## Step 1: Download certbot-auto
 In this step, you will download certbot-auto and make it executable. As an optional step, you may also move it to your bin folder.
 ```
@@ -19,6 +20,8 @@ curl -O https://dl.eff.org/certbot-auto
 chmod +x certbot-auto 
 sudo mv certbot-auto /usr/local/bin/certbot-auto
 ```
+
+
 ## Step 2: Generate your certificate.
 
 Run the below command, but make sure to replace the domain piece at the end.
@@ -29,11 +32,13 @@ You can repeat this step for as many domains and subdomains as you'd like. Remem
 
 Your newly generated private key can be found at `/etc/letsencrypt/live/subdomain.your-domain-here.com/fullchain.pem`
 
+
 ## Step 3: Setup Diffie Hellman params
 Run the below command to generate your Diffie Hellman params.
 ```
 openssl dhparam -dsaparam -out /etc/letsencrypt/live/subdomain.your-domain-here.com/dhparam.pem 4096
 ```
+
 
 ## Step 4: Configure your nginx virtual server
 Add the below to the server block that is listening for the respective domain name.
@@ -43,6 +48,7 @@ Add the below to the server block that is listening for the respective domain na
   ssl_dhparam "/etc/letsencrypt/live/subdomain.your-domain-here.com/dhparams.pem";  
 ```
 
+
 ## Step 5: Setup forward secrecy
 You can **and should** read more about what forward secrecy is [here](https://github.com/ssllabs/research/wiki/Forward-Secrecy), but setting it up is easy. Simply add the following lines to your nginx virtual server block.
 ```
@@ -51,11 +57,13 @@ You can **and should** read more about what forward secrecy is [here](https://gi
   ssl_ciphers "EECDH+AESGCM:EDH+AESGCM:ECDHE-RSA-AES128-GCM-SHA256:AES256+EECDH:DHE-RSA-AES128-GCM-SHA256:AES256+EDH:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA256:DHE-RSA-AES128-SHA256:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:ECDHE-RSA-DES-CBC3-SHA:EDH-RSA-DES-CBC3-SHA:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES128-SHA256:AES256-SHA:AES128-SHA:DES-CBC3-SHA:HIGH:!aNULL:!eNULL:!EXPORT:!DES:!MD5:!PSK:!RC4";
   ```
   
+
 ## Step 6: Opt in to HSTS
 HSTS basically means that your server will only allows https traffic. You can read more about it [here](https://github.com/ssllabs/research/wiki/SSL-and-TLS-Deployment-Best-Practices#46-deploy-http-strict-transport-security). To enable it, simply add the below line to your virtual server block.
 ```
   add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
 ```
+
 
 ## Step 7: Setup a cron job to auto renew the certificates
 These certificates are only good for a few months. You will need to renew the certificats to keep your secure website running properly. Fortunately, Certbot makes this super easy.
@@ -69,6 +77,7 @@ So the easiest way to automate this is to just run this command on a cron job. C
 0 0,12 * * * path-to-certbot-scripts/certbot-renew.sh
 ```
   
+
 # Final Server Block
 
 Your server block should look something like below at this point.
