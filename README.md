@@ -7,7 +7,7 @@ Special thanks to:
 - [Certbot](https://certbot.eff.org/) for building the tools to help automate this process.
 
 Notes:
-- This walkthrough assumes you are using nginx on an Amazon Linux instance.
+- This walkthrough assumes you are using nginx on an Amazon Linux instance and that you know your way around the two.
 - Let's Encrypt does not yet support wildcard domains, but they have [announced](https://letsencrypt.org/2017/07/06/wildcard-certificates-coming-jan-2018.html) that these will be available at the beginning of 2018. 
 
 # Wakthrough
