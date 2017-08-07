@@ -56,6 +56,16 @@ HSTS basically means that your server will only allows https traffic. You can re
 ```
   add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
 ```
+
+## Step 7: Setup a cron job to auto renew the certificates
+These certificates are only good for a few months. You will need to renew the certificats to keep your secure website running properly. Fortunately, Certbot makes this super easy.
+
+You can always manually renew all your certificates using the following command.
+```
+path-to-certbot-scripts/certbot-renew.sh
+```
+So the easiest way to automate this is to just run this command on a cron job. Certbot recommends we run this twice a day.
+```0 0,12 * * * path-to-certbot-scripts/certbot-renew.sh ```
   
 # Final Server Block
 
