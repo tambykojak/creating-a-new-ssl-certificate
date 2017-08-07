@@ -1,6 +1,6 @@
 # Creating and configuring a new SSL certificate for free.
 
-These instructions, as of August 7th, will get you an A+ SSL rating with [SSL Labs](https://www.ssllabs.com/ssltest/index.html) for free!
+These instructions, as of August 7th, will get you an **A+** SSL rating with [SSL Labs](https://www.ssllabs.com/ssltest/index.html) for free!
 
 Special thanks to:
 - [Let's Encrypt](https://letsencrypt.org/), a free, automated, and open Certificate Authority
